@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yadhu Associates | Bespoke Sofas & Interiors</title>
+  </head>
+  <body>
+    <!-- FATAL ERROR REPORTER -->
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        document.body.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#8B0000;color:white;padding:20px;font-family:monospace;font-size:16px;white-space:pre-wrap;"><b>FATAL RUNTIME ERROR:</b><br><br>' + message + '<br><br>' + (error ? error.stack : '') + '</div>';
+        return false;
+      };
+      window.onunhandledrejection = function(event) {
+        document.body.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#8B0000;color:white;padding:20px;font-family:monospace;font-size:16px;white-space:pre-wrap;"><b>UNHANDLED PROMISE REJECTION:</b><br><br>' + event.reason + '</div>';
+      };
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,351 @@
+/* Clean Slate */
+.home-container {
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.8) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  width: 100%;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: normal;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  letter-spacing: -2px;
+}
+
+.tech-badge {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.glow-text {
+  color: var(--color-mustard);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.btn-primary {
+  background-color: var(--color-mustard);
+  color: var(--color-bg);
+  padding: 16px 40px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-mustard-light);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+.hero-cta {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Brutalist CSS Marquee - Pinned strictly to the bottom of the 100vh hero block */
+.tech-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-mustard);
+  color: var(--color-bg);
+  padding: 0.8rem 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid var(--color-text);
+  z-index: 20;
+}
+
+.tech-marquee {
+  white-space: nowrap;
+  will-change: transform;
+  display: flex;
+  width: fit-content;
+  animation: marquee-scroll 25s linear infinite;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* --- Phase 2: Bespoke Process --- */
+.bespoke {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 5vw;
+}
+
+.bespoke-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  width: 100%;
+  max-width: 1600px;
+  align-items: center;
+}
+
+.bespoke-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.bespoke-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bespoke-image-wrapper:hover .bespoke-image {
+  transform: scale(1.05); /* very subtle, elegant zoom */
+}
+
+.bespoke-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-text);
+}
+
+.bespoke-content .section-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  color: var(--color-mustard);
+  margin-bottom: 0rem;
+}
+
+.separator {
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-mustard);
+  margin: 2rem 0;
+}
+
+.bespoke-content .section-subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.bespoke-content .section-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.bespoke-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.bespoke-features li {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-mustard);
+  border-radius: 50%;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text-muted);
+  padding: 15px 40px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-mustard);
+  color: var(--color-mustard);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .bespoke-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .bespoke-image-wrapper {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* --- Phase 3: 3D Showcase (Editorial Newspaper Theme) --- */
+.showcase-3d {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #E6E4DD; /* Authentic Editorial Cream base */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Diagonal architectural black cut (Animated via Framer Motion) */
+.showcase-black-cut {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background-color: #111111; /* Signature Deep Charcoal */
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
+  pointer-events: none;
+  contain: paint layout; /* GPU scoping */
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.newspaper-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  /* High fidelity SVG fractal noise for authentic paper grain */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  contain: strict; /* Prevent layout recalculations bleeding from this static layer */
+  will-change: transform;
+  transform: translateZ(0); /* Force layer promotion */
+}
+
+/* Faded continuous logo watermark */
+.newspaper-bg::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('/logo.png');
+  background-size: 200px;
+  background-repeat: repeat;
+  /* Since the logo is white, we invert it to black, and drop opacity heavily to make it a subtle pattern on the cream background */
+  filter: invert(1) opacity(0.04);
+  z-index: 0;
+}
+
+.showcase-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-text {
+  position: absolute;
+  bottom: 8%;
+  left: 5vw;
+  color: #111111; /* Pitch black text on light cream paper bg */
+  max-width: 450px;
+  pointer-events: none; /* Let clicks pass through to 3D canvas if needed */
+}
+
+.showcase-text h2 {
+  font-size: 3.5rem;
+  letter-spacing: -0.05em;
+  margin-bottom: 0rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.showcase-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  font-weight: 400;
+}

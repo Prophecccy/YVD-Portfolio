@@ -1,0 +1,139 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 3rem;
+  z-index: 1000;
+  transition: var(--transition-smooth);
+}
+
+.navbar.scrolled {
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.menu-btn:hover {
+  opacity: 0.7;
+}
+
+.nav-center .logo-link {
+  display: block;
+}
+
+.logo-img {
+  height: 65px;
+  transition: var(--transition-smooth);
+  will-change: transform;
+}
+
+.navbar.scrolled .logo-img.scaled {
+  transform: scale(0.85);
+}
+
+.nav-right .contact-link {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mustard);
+  position: relative;
+}
+
+.nav-right .contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-mustard);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.nav-right .contact-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Full Screen Menu */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-bg);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn {
+  color: var(--color-text);
+  transition: transform 0.5s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+}
+
+.menu-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu-links a {
+  font-family: var(--font-serif);
+  font-size: 4vw;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  transition: color 0.4s ease;
+}
+
+.menu-links a:hover {
+  color: var(--color-mustard-light);
+  font-style: italic;
+}
+
+.menu-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
