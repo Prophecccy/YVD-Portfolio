@@ -153,16 +153,44 @@
   aspect-ratio: 4/5;
   overflow: hidden;
   border-radius: 4px;
+  background-color: var(--color-bg-alt);
+}
+
+.bespoke-curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-mustard);
+  z-index: 2;
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.bespoke-image-wrapper.is-visible .bespoke-curtain {
+  transform: scaleY(0);
 }
 
 .bespoke-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: scale(1.15);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  z-index: 1;
 }
 
-.bespoke-image-wrapper:hover .bespoke-image {
+.bespoke-image-wrapper.is-visible .bespoke-image {
+  opacity: 1;
+  transform: scale(1.0);
+}
+
+.bespoke-image-wrapper.is-visible:hover .bespoke-image {
   transform: scale(1.05); /* very subtle, elegant zoom */
 }
 
@@ -274,7 +302,7 @@
   justify-content: center;
 }
 
-/* Diagonal architectural black cut (Animated via Framer Motion) */
+/* Diagonal architectural black cut (Animated via GPU CSS transition) */
 .showcase-black-cut {
   position: absolute;
   top: 0;
@@ -282,13 +310,18 @@
   width: 55%;
   height: 100%;
   background-color: #111111; /* Signature Deep Charcoal */
-  clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
   z-index: 0;
   pointer-events: none;
   contain: paint layout; /* GPU scoping */
-  will-change: transform;
+  transition: clip-path 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+.showcase-black-cut.is-visible {
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
 .newspaper-bg {
@@ -330,9 +363,10 @@
   position: absolute;
   bottom: 8%;
   left: 5vw;
-  color: #111111; /* Pitch black text on light cream paper bg */
+  color: #111111; /* Luxury deep charcoal for contrast on editorial cream */
   max-width: 450px;
   pointer-events: none; /* Let clicks pass through to 3D canvas if needed */
+  z-index: 15;
 }
 
 .showcase-text h2 {
@@ -349,3 +383,125 @@
   opacity: 0.8;
   font-weight: 400;
 }
+
+.showcase-separator {
+  background-color: currentColor; /* Blends dynamically based on current color */
+}
+
+/* Dynamic Responsive Queries for Mobile Optimization */
+@media (max-width: 768px) {
+  /* Promote dynamic layers to high-performance hardware layers on touch devices to avoid blinking or text rendering shifts */
+  .hero-content h1,
+  .bespoke-image-wrapper,
+  .bespoke-image,
+  .showcase-black-cut,
+  .showcase-text,
+  .showcase-text h2,
+  .showcase-text p,
+  .separator {
+    will-change: transform, opacity, clip-path;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .hero {
+    padding: 0 1.5rem;
+    min-height: 80vh;
+  }
+  
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
+    letter-spacing: -1px;
+  }
+
+  .tech-badge {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-marquee-container {
+    padding: 0.6rem 0;
+  }
+
+  .tech-marquee {
+    font-size: 0.95rem;
+  }
+
+  .bespoke {
+    padding: 60px 1.5rem;
+  }
+
+  .bespoke-content .section-title {
+    font-size: 2.5rem;
+  }
+
+  .bespoke-content .section-subtitle {
+    font-size: 1.6rem;
+  }
+
+  .bespoke-content .section-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .bespoke-features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-secondary {
+    padding: 12px 30px;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 3D Showcase adjustments for mobile device screens */
+  .showcase-3d {
+    min-height: 80vh !important;
+  }
+
+  .showcase-content {
+    height: 80vh !important;
+  }
+
+  .showcase-black-cut {
+    width: 75% !important;
+    clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%) !important;
+  }
+
+  .showcase-black-cut.is-visible {
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%) !important;
+  }
+
+  .showcase-text {
+    bottom: 5%;
+    left: auto;
+    right: 1.2rem;
+    max-width: 250px;
+    width: calc(100% - 2.4rem);
+    text-align: right;
+    color: #ffffff; /* White for high contrast on dark mobile sweep */
+  }
+
+  .showcase-text .showcase-separator {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  .showcase-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .showcase-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+

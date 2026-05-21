@@ -156,3 +156,67 @@
     height: 180px;
   }
 }
+
+/* Touch Device Specific Overrides (Eradicate hover stickiness) */
+@media (hover: none) {
+  /* Neutralize background dimming and blurring when cards are tapped */
+  .dual-marquee-wrapper.is-hovering .marquee-item:not(.hovered) {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: scale(1) translateZ(0) !important;
+  }
+
+  .marquee-item {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .marquee-item.hovered {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Consistent luxury lighting across all cards */
+  .marquee-item img, .marquee-item.hovered img {
+    filter: saturate(0.9) brightness(0.9) !important;
+  }
+
+  /* Pin the badge permanently as a premium bottom caption ribbon */
+  .hover-badge {
+    position: absolute;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: rgba(17, 17, 17, 0.85) !important;
+    color: var(--color-text) !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+  }
+
+  .hover-index {
+    font-size: 0.65rem !important;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    text-align: left;
+  }
+
+  .hover-name {
+    font-size: 0.8rem !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+}

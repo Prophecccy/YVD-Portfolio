@@ -137,3 +137,60 @@
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
+
+/* Mobile responsive menu overrides */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .navbar.scrolled {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .logo-img {
+    height: 45px;
+  }
+
+  .navbar.scrolled .logo-img.scaled {
+    transform: scale(0.9);
+  }
+
+  .menu-btn {
+    min-height: 44px;
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-right .contact-link {
+    min-height: 44px;
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .menu-overlay {
+    padding: 1.5rem;
+  }
+
+  .close-btn {
+    min-height: 44px;
+    padding: 10px;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-links {
+    gap: 1.5rem;
+  }
+
+  .menu-links a {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+  }
+}
