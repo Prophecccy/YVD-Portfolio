@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +16,27 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleHashNav = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Delay slightly to let the home page mount before scrolling
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <>
@@ -25,13 +49,13 @@ const Navbar = () => {
           </div>
           
           <div className="nav-center">
-            <a href="/" className="logo-link">
+            <Link to="/" className="logo-link">
               <img src="/logo.png" alt="YVD Logo" className={`logo-img ${scrolled ? 'scaled' : ''}`} />
-            </a>
+            </Link>
           </div>
 
           <div className="nav-right">
-            <a href="#contact" className="contact-link">Contact</a>
+            <a href="#contact" className="contact-link" onClick={(e) => handleHashNav(e, '#contact')}>Contact</a>
           </div>
         </div>
       </header>
@@ -52,10 +76,11 @@ const Navbar = () => {
               </button>
             </div>
             <div className="menu-links">
-              <a href="#hero" onClick={() => setMenuOpen(false)}>Home</a>
-              <a href="#bespoke" onClick={() => setMenuOpen(false)}>Bespoke</a>
-              <a href="#portfolio" onClick={() => setMenuOpen(false)}>Showcase</a>
-              <a href="#craftsmanship" onClick={() => setMenuOpen(false)}>Craftsmanship</a>
+              <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+              <a href="#bespoke" onClick={(e) => handleHashNav(e, '#bespoke')}>Bespoke</a>
+              <a href="#portfolio" onClick={(e) => handleHashNav(e, '#portfolio')}>Portfolio</a>
+              <Link to="/library" onClick={() => setMenuOpen(false)} className="text-gold">Detailed Library</Link>
+              <a href="#showcase" onClick={(e) => handleHashNav(e, '#showcase')}>3D Engine</a>
             </div>
             <div className="menu-footer">
               <p>Yadhu Associates &copy; {new Date().getFullYear()}</p>
@@ -68,3 +93,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

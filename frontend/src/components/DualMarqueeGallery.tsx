@@ -1,33 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { SOFA_CATALOG } from '../data/sofas';
+import type { Sofa } from '../data/sofas';
 import './DualMarqueeGallery.css';
 
-export interface Sofa {
-  id: number;
-  src: string;
-  name: string;
-}
-
-export const SOFA_CATALOG: Sofa[] = [
-  { id: 1, src: '/portfolio/sofa-1.jpg', name: 'The Silverstone Sectional' },
-  { id: 2, src: '/portfolio/sofa-2.jpg', name: 'The Sovereign Velvet Chaise' },
-  { id: 3, src: '/portfolio/sofa-3.jpg', name: 'The Emerald Diamond Quilt' },
-  { id: 4, src: '/portfolio/sofa-4.jpg', name: 'The Milanese Silhouette' },
-  { id: 5, src: '/portfolio/sofa-5.jpg', name: 'The Botanical Print Loveseat' },
-  { id: 6, src: '/portfolio/sofa-6.jpg', name: 'The Nordic Mint Loveseat' },
-  { id: 7, src: '/portfolio/sofa-7.jpg', name: 'The Sahara Olive Modular' },
-  { id: 8, src: '/portfolio/sofa-8.jpg', name: 'The Rosewood Contour Quartet' },
-  { id: 9, src: '/portfolio/sofa-9.jpg', name: 'The Graphite Stiletto L-Shape' },
-  { id: 10, src: '/portfolio/sofa-10.jpg', name: 'The Imperial Cocoa Cinema Set' },
-  { id: 11, src: '/portfolio/sofa-11.jpg', name: 'The Havana Velvet Modular' },
-  { id: 12, src: '/portfolio/sofa-12.jpg', name: 'The Valencia Accent Chair' },
-  { id: 13, src: '/portfolio/sofa-13.jpg', name: 'The Sienna Channel Loveseat' },
-  { id: 14, src: '/portfolio/sofa-14.jpg', name: 'The Champagne Gold L-Shape' },
-  { id: 15, src: '/portfolio/sofa-15.jpg', name: 'The Azure Heritage Chair' },
-  { id: 16, src: '/portfolio/sofa-16.jpg', name: 'The Mint Cherrywood Tub Chair' },
-  { id: 17, src: '/portfolio/sofa-17.jpg', name: 'The Sculptural Cream Chair' },
-  { id: 19, src: '/portfolio/sofa-19.jpg', name: 'The Sovereign Blue High-Back' },
-  { id: 20, src: '/portfolio/sofa-20.jpg', name: 'The Classic Gold Wingback' },
-];
 
 interface MarqueeRowProps {
   images: Sofa[];
@@ -148,7 +124,6 @@ const MarqueeRow: React.FC<MarqueeRowProps> = ({ images, direction, hoveredId, s
              >
                <img src={sofa.src} alt={sofa.name} draggable={false} loading="lazy" decoding="async" />
                <div className="hover-badge">
-                 <span className="hover-index">NO. {sofa.id.toString().padStart(2, '0')}</span>
                  <span className="hover-name">{sofa.name}</span>
                </div>
              </div>
@@ -163,9 +138,10 @@ const DualMarqueeGallery = () => {
   // Global focus state allows us to dim elements across *both* separate rows
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  // Divide the 20 asset images cleanly into two distinct 10-item tracks using the defined catalog
-  const row1Images = SOFA_CATALOG.slice(0, 10);
-  const row2Images = SOFA_CATALOG.slice(10, 20);
+  // Divide the complete asset catalog dynamically into two distinct rows to display all current and future additions
+  const half = Math.ceil(SOFA_CATALOG.length / 2);
+  const row1Images = SOFA_CATALOG.slice(0, half);
+  const row2Images = SOFA_CATALOG.slice(half);
 
   return (
     <section className={`dual-marquee-wrapper ${hoveredId ? 'is-hovering' : ''}`} id="portfolio">
@@ -175,8 +151,12 @@ const DualMarqueeGallery = () => {
       </div>
       <MarqueeRow images={row1Images} direction={1} hoveredId={hoveredId} setHoveredId={setHoveredId} speed={0.8} />
       <MarqueeRow images={row2Images} direction={-1} hoveredId={hoveredId} setHoveredId={setHoveredId} speed={0.65} />
+      <div className="marquee-cta">
+        <Link to="/library" className="btn-secondary tech-cta">Enter Detailed Archive</Link>
+      </div>
     </section>
   );
 };
+
 
 export default DualMarqueeGallery;

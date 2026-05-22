@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Library from './pages/Library';
 import Footer from './components/Footer';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/library" element={<Library />} />
           </Routes>
         </main>
         <Footer />
@@ -20,3 +22,4 @@ function App() {
 }
 
 export default App;
+

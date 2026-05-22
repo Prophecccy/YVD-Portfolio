@@ -43,7 +43,19 @@ The application implements a premium, high-end dark luxury aesthetic:
   - Hover blur filters on adjacent items are systematically neutralized on mobile to avoid sticky tap layouts.
   - Information coordinates (`.hover-badge`) are locked in place at the bottom of each image container permanently on touch devices, showing sofa names with a premium semi-transparent ribbon overlay.
 
+### 4. Standalone Product Archive & Inquiry Engine (`Library.tsx` & `Library.css`)
+- **Centralized Data Structure (`src/data/sofas.ts`):** Centralizes the static sofa catalog with categories (`sectional` | `sofa` | `loveseat` | `chair`) and premium specifications, sharing the data cleanly between `DualMarqueeGallery.tsx` and the detailed list view to guarantee zero data drift.
+- **Staggered Entrance Animation:** Uses a staggered `framer-motion` entrance sweep to cascade grid item cards as they slide and fade into view.
+- **Layout-Preserved Filtering:** Grid filtering uses Framer Motion `layout` mutations to slide neighboring items gracefully when filtering categories instead of producing abrupt layout shifts.
+- **Immersive Specifications Modal:** Contains:
+  - Deep-level viewport overlays with responsive grid wrappers.
+  - Immersive left side media blocks with dark gradient sweeps.
+  - Right side specifications sheets and an **Interactive Bespoke Inquiry Form**.
+  - Custom React mock transition system animating forms into beautiful golden confirmation states upon submission.
+- **Strict Verbatim Module Syntax Integration:** Utilizes type-only `import type { Sofa }` imports to comply with strict TypeScript compiling configurations.
+
 ---
+
 
 ## 📱 Mobile Architecture Guidelines
 - **Navbar:** Sticky header horizontal padding reduces to `1rem 1.5rem` under `768px`. Logo scales smoothly from `65px` to `45px` to maximize viewport space.
