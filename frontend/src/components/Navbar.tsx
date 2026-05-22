@@ -80,7 +80,6 @@ const Navbar = () => {
               <a href="#bespoke" onClick={(e) => handleHashNav(e, '#bespoke')}>Bespoke</a>
               <a href="#portfolio" onClick={(e) => handleHashNav(e, '#portfolio')}>Portfolio</a>
               <Link to="/library" onClick={() => setMenuOpen(false)} className="text-gold">Detailed Library</Link>
-              <a href="#showcase" onClick={(e) => handleHashNav(e, '#showcase')}>3D Engine</a>
             </div>
             <div className="menu-footer">
               <p>Yadhu Associates &copy; {new Date().getFullYear()}</p>
